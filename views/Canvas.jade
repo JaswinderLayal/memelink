@@ -1,0 +1,115 @@
+﻿head 
+ link(href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css",rel="stylesheet")
+ link(href="css/colorpicker.css",rel="stylesheet")
+ style.
+  @font-face{
+  font-family:"Kristen";
+  src:url("Fonts/Kristen-ITC-Regular.ttf")
+  }
+  #gallery{
+  display:none;
+  }
+  #gallery ul
+  {
+  padding:0;
+  }
+  #gallery ul li
+  {
+  list-style:none;
+  display:inline-block;
+  }
+  body
+  {
+   margin:0;
+   padding:0;
+  }
+  #drawing-canvas
+  {
+    box-sizing:border-box;
+  }
+
+
+Body(style="font-family:Kristen")
+  
+  div(style="position:relative;top:0;left:0;width:100px;height:40px;background-color:grey",id="showImages")
+   div(id="gallery",style="position:relative;z-index:10;top:40px") 
+    ul(style="background-color:wheat")
+     li()
+      div(class="draggableImages",style="width:80px;height:80px")
+       img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+     li()
+      div(class="draggableImages",style="width:80px;height:80px")
+       img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+     li()
+      div(class="draggableImages",style="width:80px;height:80px")
+       img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+
+
+
+  div(style="position:relative;border:1px solid black;float:left",width="40%",height="480px",id="drawing-canvas") 
+   canvas(id="mycanvas",width="480px",height="480px")
+   div(style="width:90%;height:30px;border: 3px dashed rgb(33, 226, 94);position:absolute;top:0;left:2%;",class="draggable")
+       div(style="width:100%;height:100%;color:white;word-wrap:break-word;font-family:Kristen;font-size:30px;text-shadow:1px 3px 1px black;overflow:overlay",id="textHold1")
+   div(style="width:90%;height:30px;border: 3px dashed rgb(33, 226, 94);position:absolute;top:447px;left:2%;",class="draggable")
+       div(style="width:100%;height:100%;color:white;word-wrap:break-word;font-family:Kristen;font-size:30px;text-shadow:1px 3px 1px black;overflow:overlay",id="textHold2")
+ 
+ div(style="float:left;margin:0px")
+  canvas(id="canvas2",width="480px",height="480px",style="border:1px solid black")
+
+ div(style="float:left;padding:0px")
+  input(type='hidden',value=mainImage,id="uploadImage")
+  input(style="height:30px;font-size:15px;width:100%;height:50px;font-family:arial;background:transparent;border: 1px solid #575757;display:block",id="text1",class="widget ui-widget-content",placeholder="Enter upper text")
+  select(id="font-size1")
+   option(value="15") 15px
+   option(value="17") 17px
+   option(value="19") 19px
+   option(value="21") 21px
+   option(value="25") 25px
+   option(value="27") 27px
+   option(value="29",selected) 29px
+   option(value="31") 31px
+   option(value="33") 33px
+   option(value="35") 35px
+   option(value="37") 37px
+   option(value="39") 39px
+   option(value="41") 41px
+   option(value="43") 43px
+   option(value="45") 45px
+   option(value="47") 47px
+   option(value="49") 49px
+  input(style="height:30px;font-size:15px;width:100%;height:50px;font-family:arial;background: transparent;border: 1px solid #575757;display:block",id="text2",class="widget ui-widget-content",placeholder="Enter lower text")
+  select(id="font-size2")
+   option(value="15") 15px
+   option(value="17") 17px
+   option(value="19") 19px
+   option(value="21") 21px
+   option(value="25") 25px
+   option(value="27") 27px
+   option(value="29",selected) 29px
+   option(value="31") 31px
+   option(value="33") 33px
+   option(value="35") 35px
+   option(value="37") 37px
+   option(value="39") 39px
+   option(value="41") 41px
+   option(value="43") 43px
+   option(value="45") 45px
+   option(value="47") 47px
+   option(value="49") 49px
+  button(type="button",id="Paint",style="padding: 12px;background-color: rgb(49, 64, 174);color: white;border-radius: 9px;margin: 10px 2px;") Paint
+  button(type="button",id="Save",style="padding: 12px;background-color: rgb(49, 64, 174);color: white;border-radius: 9px;margin: 10px 2px;") Save
+  form(action="/uploadPic",method="POST",enctype="multipart/form-data")
+    input(type="file" name="file")
+    button(type="submit") Submit
+  div(id="colorSelector",style="width:40px;height:10px;border:1px solid black")
+ div(style="clear:both")
+ div(style="float:left;margin:2px;height:auto") Original Image
+ div(style="float:left;margin:2px;height:auto") Modified Image
+   
+   script(src="Scripts/jquery-1.11.2.min.js")
+   script(src="/Scripts/jquery-ui.js")
+   script(src="/Scripts/jquery.fittext.js")
+   script(src="/Scripts/CanvasHelpers.js")
+   script(src="/js/colorpicker.js")
+   script(src="Scripts/main.js")
+ 

@@ -1,0 +1,4 @@
+C:\Users\Trigbit\documents\visual studio 2013\Projects\jade tutorial\jade tutorial\obj\Debug\jade tutorial.njsprojResolveAssemblyReference.cache
+C:\Users\Trigbit\documents\visual studio 2013\Projects\jade tutorial\jade tutorial\bin\Microsoft.NodejsTools.WebRole.dll
+F:\Current\jade tutorial\jade tutorial\obj\Debug\jade tutorial.njsprojResolveAssemblyReference.cache
+F:\Current\jade tutorial\jade tutorial\bin\Microsoft.NodejsTools.WebRole.dll

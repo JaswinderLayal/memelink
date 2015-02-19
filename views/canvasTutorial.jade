@@ -1,0 +1,129 @@
+﻿Body
+ canvas(id="mycanvas",width="500px",height="500px",style="border:1px solid black")
+
+
+
+ script.
+   var canvas=document.getElementById("mycanvas");
+   var context=canvas.getContext("2d");
+   //context.beginPath();
+   //context.arc(250,250,100,0,Math.PI*2,false);
+   //context.strokeStyle="pink";
+   //context.lineWidth=15;
+   //context.fillStyle="pink";
+   //context.fill();
+   //context.moveTo(290,280);
+   //context.arc(250,250,50,Math.PI*0.25,Math.PI*0.80,false);
+   //context.strokeStyle="blue";
+   
+   
+   //context.moveTo(300,200);
+  
+   //context.arc(280,200,20,0,Math.PI*2,false);
+   //context.moveTo(250,200);
+   //context.arc(230,200,20,0,Math.PI*2,true);
+   //context.strokeStyle="red";
+   //context.lineWidth=5;
+   
+   //context.stroke();
+   //custom shape
+   //context.beginPath();
+   //context.moveTo(40,40);
+   //context.lineTo(100,450);
+   //context.quadraticCurveTo(110,480,140,430);
+   //context.bezierCurveTo(245,200,200,580,340,400);
+   //context.lineTo(400,300);
+   //context.stroke();
+
+   //joins
+   //context.beginPath();
+   //context.moveTo(100,300);
+   //context.lineTo(200,100);
+   //context.lineTo(300,300);
+   //context.lineWidth=25;
+   //context.lineJoin="round";
+   //context.stroke();
+
+   //round corner Rectangle
+   //var recWidth=300;
+   //var recHeight=150;
+   //var cornerRadius=30;
+   //context.beginPath();
+   //context.moveTo(50+cornerRadius,50);
+   //context.lineTo(50+recWidth-cornerRadius,50);
+   //context.arcTo(50+recWidth,50,50+recWidth,50+cornerRadius,cornerRadius);
+   //context.lineTo(50+recWidth,50+recHeight-cornerRadius);
+   //context.arcTo(50+recWidth,50+recHeight,50+recWidth-cornerRadius,50+recHeight,cornerRadius);
+   //context.lineTo(50+cornerRadius,50+recHeight);
+   //context.arcTo(50,50+recHeight,50,50-cornerRadius,cornerRadius);
+   //context.lineTo(50,50+cornerRadius);
+   //context.arcTo(50,50,50+cornerRadius,50,cornerRadius);
+   //context.stroke();
+
+   //measure Text width
+   //context.font="bold 65pt Arial";
+   //context.lineWidth=2;
+   //var text="Hello Canvas";
+   //var metrics=context.measureText(text);
+   //console.log(metrics);
+   //context.strokeStyle="pink";
+   //context.strokeText(text,00,150);
+
+   //wrap text
+   var text="All the world \'s a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.";
+   var maxWidth=400;
+   var lineHeight=25;
+   var x=(canvas.width-maxWidth)/2;
+   var y=15;
+   context.lineWidth=2;
+   context.fillStyle="red";
+   context.font="16pt Arial";
+   context.shadowColor="black";
+   context.shadowOffsetX = 1; 
+   context.shadowOffsetY = 2; 
+   context.shadowBlur = 5;
+   DrawText(context,text,lineHeight,maxWidth,x,y);
+
+
+   function DrawText(context,text,lineHeight,maxwidth,x,y)
+   {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxwidth && n > 0) {
+          if(context.measureText(words[n])>maxwidth)
+          {
+              var wordsAlpha=words[n].split("");
+              for(var j=0;j<wordsAlpha.length;j++)
+              {
+               var newTestLine=line+wordsAlpha[j];
+               if(context.measureText(newTestLine)>maxwidth)
+               {
+                context.fillText(line);
+                y+=lineHeight
+               }
+               else{
+               line=newTestLine;
+               }
+             }
+
+             
+          }
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+
+
+
+
+   }

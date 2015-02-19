@@ -1,0 +1,330 @@
+﻿﻿head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#")
+  link(type="text/css",rel="stylesheet",href="css/Main.css")
+  link(type="text/css",rel="stylesheet",href="css/font-awesome.min.css")
+  link(href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css",rel="stylesheet")
+  link(href="css/colorpicker.css",rel="stylesheet")
+  link(href="css/spectrum.css",rel="stylesheet")
+  meta(property="og:title",content="My Created MEME")
+  meta(property="og:description",content="Description")
+  meta(property="og:image",content="http://images.visitcanberra.com.au/images/canberra_hero_image.jpg")
+  meta(name="viewport" content="width=device-width")
+  meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
+body
+ <!-- Main Div -->
+ div(class="site-wrapper")
+   <!--left Sidebar-->
+   nav(class="left-side-nav")
+    h1 MEME CREATOR
+    ul
+     li 
+      a 
+       i(class="fa fa-star") 
+       |Welcome
+     li 
+      a 
+       i(class="fa fa-home") 
+       |Home
+     li 
+      a 
+       i(class="fa fa-close") 
+       |Close
+     li 
+       a 
+        i(class="fa fa-upload") 
+        form(action="/uploadPic",method="POST",enctype="multipart/form-data",id="upload-form",style="display:inline-block;padding:0;margin:0")
+         input(type='hidden',value=mainImage,id="uploadImage")
+         label(for="file-upload",class="file-upload-wrapper")
+          |File
+         input(type="file",name="file",id="file-upload")
+         &nbsp;
+      
+     li 
+      a 
+       input(id="colorSelector",class="side-color colorSelector",style="")
+       &nbsp;Select Color 
+     li 
+      a 
+       i(class="fa fa-file-photo-o") 
+       label(for="files",class="file-upload-wrapper")
+        |Upload Smily
+       input(type="file",id="files")
+    
+
+   <!-- Right Nav Bar -->
+   nav(class="right-side-nav")
+   <!--mainpage-->
+   main
+    <!--Main Heading -->
+    header
+      <!-- left menu Icon -->
+      div(class="menuBar")
+       <i class="fa fa-3x fa-list"></i>
+      <!-- Main Heading -->
+      div(class="heading")
+       h1 MEME CREATOR
+      <!--right menu -->
+      div(class="menubar-right") 
+    <!--Main Page -->
+    div(style="",id="main-page-wrapper")
+     div(style="",id="drawing-wrapper")
+       div(style="position:relative;border: 4px double rgb(219, 219, 219);float: left;box-shadow: 1px 2px 10px rgb(140, 136, 136);box-sizing:border-box;margin-bottom:15px",width="40%",height="480px",id="drawing-canvas") 
+         canvas(id="mycanvas",width="480px",height="480px")
+         div(style="width:90%;height:30px;border: 3px dashed rgb(33, 226, 94);position:absolute;top:0;left:2%;",class="draggable")
+           div(style="width:100%;height:100%;color:white;word-wrap:break-word;font-family:Kristen;font-size:30px;text-shadow:1px 3px 1px black;overflow:overlay",id="textHold1")
+         div(style="width:90%;height:30px;border: 3px dashed rgb(33, 226, 94);position:absolute;top:447px;left:2%;",class="draggable")
+           div(style="width:100%;height:100%;color:white;word-wrap:break-word;font-family:Kristen;font-size:30px;text-shadow:1px 3px 1px black;overflow:overlay",id="textHold2")
+       
+  
+  
+    button(type="button",id="Paint",class="paint-buttons") Preview/Download
+  
+
+ <!--bottom links -->
+ div(class="bottom-right-circle") 
+  i(class="fa fa-3x fa-angle-double-up")
+ 
+ div(class="bottom-left-circle") 
+  i(class="fa fa-2x fa-text-height")
+
+ <!--Text Window -->
+ div(class="text-window right-tools")
+    div
+     div(style="width:80%;display:inline-block")
+      input(id="text1",class="widget ui-widget-content text-boxes",placeholder="Enter upper text")
+     div(style="width:20%;display:inline-block")
+      select(id="font-size1",class="font-drop")
+             option(value="15") 15px
+             option(value="17") 17px
+             option(value="19") 19px
+             option(value="21") 21px
+             option(value="25") 25px
+             option(value="27") 27px
+             option(value="29",selected) 29px
+             option(value="31") 31px
+             option(value="33") 33px
+             option(value="35") 35px
+             option(value="37") 37px
+             option(value="39") 39px
+             option(value="41") 41px
+             option(value="43") 43px
+             option(value="45") 45px
+             option(value="47") 47px
+             option(value="49") 49px
+     div
+       div(style="width:80%;display:inline-block")
+        input(id="text2",class="widget ui-widget-content text-boxes",placeholder="Enter lower text")
+       div(style="width:20%;display:inline-block")
+        select(id="font-size2",class="font-drop")
+         option(value="15") 15px
+         option(value="17") 17px
+         option(value="19") 19px
+         option(value="21") 21px
+         option(value="25") 25px
+         option(value="27") 27px
+         option(value="29",selected) 29px
+         option(value="31") 31px
+            option(value="33") 33px
+            option(value="35") 35px
+            option(value="37") 37px
+            option(value="39") 39px
+            option(value="41") 41px
+            option(value="43") 43px
+            option(value="45") 45px
+            option(value="47") 47px
+            option(value="49") 49px
+
+
+
+
+
+
+
+ <!--Images-->
+ div(class="clip-images")
+  div(style="height:20%;padding: 0 8px;")
+   ul(class="tabs")
+    li(id="smily",class="activeTab")
+      a Smilies
+    li() 
+      a User Image
+  div(id="Smilies")
+    ul(class="image-icons")
+       li()
+        div(class="draggableImages",style="")
+         img(src="img/smilies/smiley-emoticon-courtesy-of-sevens-heaven.jpg (400×400).png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/smiley_talkling_w_hands.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/lost_emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/depositphotos_8080674-Laughing-out-loud-emoticon.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/Smiley-music.png",style="width:100%;height:100%")
+       li()
+        div(class="draggableImages")
+         img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+  div(id="user-images",style="display:none")  
+   ul(class="user-ul image-icons")  
+ div(id="template",style="display:none")
+    li()
+      div(class="draggableImages")
+       img(src="img/smilies/strangesmiley.png",style="width:100%;height:100%")
+ 
+ 
+ <!--Overlay -->
+ div(style="",class="overlay")
+ div(style="",class="preview-canvas") 
+    div(style="margin:0px;position:relative")
+     span(style="position: absolute;font-size: 35px;top: 0%;cursor: pointer;left: 93%;",class="close-preview") x
+     div(style="overflow:auto")
+      canvas(id="canvas2",width="480px",height="480px",style="border: 1px solid rgb(213, 212, 212);display:block;margin:10px auto")  
+   
+     a(href="/image",class="paint-buttons",id="download-image",style="display:none") Download
+     button(type="button",id="Save",class="paint-buttons") Save
+     a(href="",id="download-anchor",download="",class="paint-buttons") Download   
+ 
+ div(class="colorpic-modal")
+   div(id="colorSelector",class="side-color colorSelector",style="margin:auto")
+      
+   script(src="Scripts/jquery-1.11.2.min.js")
+   script(src="Scripts/jquery.easing.1.3.js")
+   script(src="/Scripts/jquery-ui.js")
+   script(src="/Scripts/jquery.ui.touch-punch.min.js")
+   
+   script(src="/js/spectrum.js")
+   script(src="/Scripts/jquery.fittext.js")
+   script(src="/Scripts/CanvasHelpers.js")
+  
+   script(src="Scripts/main.js")
+   
+   script(src="Scripts/MainPage.js")
